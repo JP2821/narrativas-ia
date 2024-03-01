@@ -28,8 +28,7 @@ export interface ChatProps extends React.ComponentProps<'div'> {
   id?: string
 }
 
-export function Chat({ id, initialMessages, className }: ChatProps) {
-  const router = useRouter()
+export function Chat({ id, initialMessages, className }: Readonly<ChatProps>) {
   const path = usePathname()
   const [previewToken, setPreviewToken] = useLocalStorage<string | null>(
     'ai-token',

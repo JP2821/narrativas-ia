@@ -4,7 +4,6 @@ import GitHub from 'next-auth/providers/github'
 declare module 'next-auth' {
   interface Session {
     user: {
-      /** The user's id. */
       id: string
     } & DefaultSession['user']
   }
@@ -34,6 +33,6 @@ export const {
     }
   },
   pages: {
-    signIn: '/sign-in' // overrides the next-auth default signin page https://authjs.dev/guides/basics/pages
+    signIn: '/sign-in'
   }
 })

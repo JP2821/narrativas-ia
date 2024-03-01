@@ -26,7 +26,7 @@ interface SidebarProviderProps {
   children: React.ReactNode
 }
 
-export function SidebarProvider({ children }: SidebarProviderProps) {
+export function SidebarProvider({ children }: Readonly<SidebarProviderProps>) {
   const [isSidebarOpen, setSidebarOpen] = React.useState(true)
   const [isLoading, setLoading] = React.useState(true)
 
