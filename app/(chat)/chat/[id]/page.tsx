@@ -1,5 +1,5 @@
 import { type Metadata } from 'next'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 import { auth } from '@/auth'
 import { getChat } from '@/app/actions'
@@ -26,20 +26,14 @@ export async function generateMetadata({
   }
 }
 
-export default async function ChatPage({ params }: ChatPageProps) {
+export default async function ChatPage({ params }: Readonly<ChatPageProps>) {
   const session = await auth()
 
-  if (!session?.user) {
-    redirect(`/sign-in?next=/chat/${params.id}`)
-  }
+  const userID = session?.user?.id ?? "0";
 
-  const chat = await getChat(params.id, session.user.id)
+  const chat = await getChat(params.id, userID);
 
   if (!chat) {
-    notFound()
-  }
-
-  if (chat?.userId !== session?.user?.id) {
     notFound()
   }
 
