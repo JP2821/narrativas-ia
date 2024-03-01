@@ -5,7 +5,7 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { IconShare } from '@/components/ui/icons'
-import { useCopyToClipboard } from '../lib/hooks/use-copy-to-clipboard'
+import { useCopyToClipboard } from '../../lib/hooks/use-copy-to-clipboard'
 import toast from 'react-hot-toast'
 
 export function ShareSiteButton() {
