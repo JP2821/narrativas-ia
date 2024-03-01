@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { type UseChatHelpers } from 'ai/react'
 
-import { shareChat } from '@/app/actions'
 import { Button } from '@/components/ui/button'
 import { PromptForm } from '@/components/prompt-form'
 import { ButtonScrollToBottom } from '@/components/button-scroll-to-bottom'
 import { IconRefresh, IconShare, IconStop } from '@/components/ui/icons'
 import { FooterText } from '@/components/footer'
-import { ChatShareDialog } from '@/components/chat-share-dialog'
+import { SiteShareDialog } from '@/components/site-share-dialog'
 
 export interface ChatPanelProps
   extends Pick<
@@ -67,16 +66,10 @@ export function ChatPanel({
                       <IconShare className="mr-2" />
                       Share
                     </Button>
-                    <ChatShareDialog
+                    <SiteShareDialog
                       open={shareDialogOpen}
                       onOpenChange={setShareDialogOpen}
                       onCopy={() => setShareDialogOpen(false)}
-                      shareChat={shareChat}
-                      chat={{
-                        id,
-                        title,
-                        messages
-                      }}
                     />
                   </>
                 ) : null}
