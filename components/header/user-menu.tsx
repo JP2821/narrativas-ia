@@ -12,7 +12,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { IconExternalLink } from '@/components/ui/icons'
 
 export interface UserMenuProps {
   user: Session['user']
@@ -23,7 +22,7 @@ function getUserInitials(name: string) {
   return lastName ? `${firstName[0]}${lastName[0]}` : firstName.slice(0, 2)
 }
 
-export function UserMenu({ user }: UserMenuProps) {
+export function UserMenu({ user }: Readonly<UserMenuProps>) {
   return (
     <div className="flex items-center justify-between">
       <DropdownMenu>
@@ -51,17 +50,6 @@ export function UserMenu({ user }: UserMenuProps) {
             <div className="text-xs text-zinc-500">{user?.email}</div>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
-            <a
-              href="https://vercel.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-between w-full text-xs"
-            >
-              Vercel Homepage
-              <IconExternalLink className="size-3 ml-auto" />
-            </a>
-          </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
               signOut({
@@ -70,7 +58,7 @@ export function UserMenu({ user }: UserMenuProps) {
             }
             className="text-xs"
           >
-            Log Out
+            Sair da conta
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
