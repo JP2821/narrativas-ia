@@ -10,6 +10,13 @@ export interface Chat extends Record<string, any> {
   sharePath?: string
 }
 
+export interface MessageStream {
+  id: string
+  role: string
+  content: string
+  isFinished?: boolean
+}
+
 export type ServerActionResult<Result> = Promise<
   | Result
   | {

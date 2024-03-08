@@ -1,13 +1,12 @@
-import { type Message } from 'ai'
-
 import { Separator } from '@/components/ui/separator'
 import { ChatMessage } from '@/components/chat-message'
+import { MessageStream } from '../lib/types'
 
 export interface ChatList {
-  messages: Message[]
+  messages: MessageStream[]
 }
 
-export function ChatList({ messages }: ChatList) {
+export function ChatList({ messages }: Readonly<ChatList>) {
   if (!messages.length) {
     return null
   }

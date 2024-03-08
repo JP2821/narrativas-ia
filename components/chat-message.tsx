@@ -1,7 +1,6 @@
 // Inspired by Chatbot-UI and modified to fit the needs of this project
 // @see https://github.com/mckaywrigley/chatbot-ui/blob/main/components/Chat/ChatMessage.tsx
 
-import { Message } from 'ai'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 
@@ -10,12 +9,13 @@ import { CodeBlock } from '@/components/ui/codeblock'
 import { MemoizedReactMarkdown } from '@/components/markdown'
 import { IconOpenAI, IconUser } from '@/components/ui/icons'
 import { ChatMessageActions } from '@/components/chat-message-actions'
+import { MessageStream } from '../lib/types'
 
 export interface ChatMessageProps {
-  message: Message
+  message: MessageStream
 }
 
-export function ChatMessage({ message, ...props }: ChatMessageProps) {
+export function ChatMessage({ message, ...props }: Readonly<ChatMessageProps>) {
   return (
     <div
       className={cn('group relative mb-4 flex items-start md:-ml-12')}
@@ -50,7 +50,7 @@ export function ChatMessage({ message, ...props }: ChatMessageProps) {
                 children[0] = (children[0] as string).replace('`▍`', '▍')
               }
 
-              const match = /language-(\w+)/.exec(className || '')
+              const match = /language-(\w+)/.exec(className ?? '')
 
               if (inline) {
                 return (

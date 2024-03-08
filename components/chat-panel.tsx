@@ -7,6 +7,7 @@ import { ButtonScrollToBottom } from '@/components/button-scroll-to-bottom'
 import { IconRefresh, IconShare, IconStop } from '@/components/ui/icons'
 import { FooterText } from '@/components/footer'
 import { SiteShareDialog } from '@/components/site-share-dialog'
+import { MessageStream } from '../lib/types'
 
 export interface ChatPanelProps
   extends Pick<
@@ -14,13 +15,13 @@ export interface ChatPanelProps
     | 'append'
     | 'isLoading'
     | 'reload'
-    | 'messages'
     | 'stop'
     | 'input'
     | 'setInput'
   > {
   id?: string
   title?: string
+  messages: MessageStream[]
 }
 
 export function ChatPanel({
@@ -33,7 +34,7 @@ export function ChatPanel({
   input,
   setInput,
   messages
-}: ChatPanelProps) {
+}: Readonly<ChatPanelProps>) {
   const [shareDialogOpen, setShareDialogOpen] = React.useState(false)
 
   return (
