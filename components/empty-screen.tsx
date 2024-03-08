@@ -1,24 +1,13 @@
-import { UseChatHelpers } from 'ai/react'
-
 import { Button } from '@/components/ui/button'
 import { IconArrowRight, IconOpenAI } from '@/components/ui/icons'
+import { Chat } from '@/lib/types'
 
-const exampleMessages = [
-  {
-    heading: 'O que é IA?',
-    message: `Explique o que é inteligência artificial`
-  },
-  {
-    heading: 'Inteligência Artificial e Privacidade',
-    message: 'A IA prejudica a minha privacidade de dados?'
-  },
-  {
-    heading: 'Um olhar para o futuro',
-    message: `Quais são os esforços mundiais para regular a IA?`
-  }
-]
+interface EmptyScreenProps {
+  chats: Chat[],
+  onSelect: (subject: string) => void
+}
 
-export function EmptyScreen({ setInput }: Readonly<Pick<UseChatHelpers, 'setInput'>>) {
+export function EmptyScreen({ chats, onSelect }: Readonly<EmptyScreenProps>) {
   return (
     <div className="mx-auto max-w-2xl px-4">
       <div className="rounded-lg border bg-background p-8">
@@ -29,15 +18,15 @@ export function EmptyScreen({ setInput }: Readonly<Pick<UseChatHelpers, 'setInpu
           Será que a Inteligência Artificial irá roubar seu emprego?
         </p>
         <div className="mt-4 flex flex-col items-start space-y-2">
-          {exampleMessages.map((message, index) => (
+          {chats.map((chat) => (
             <Button
-              key={index}
+              key={chat.id}
               variant="link"
               className="h-auto p-0 text-base"
-              onClick={() => setInput(message.message)}
+              onClick={() => onSelect(chat.id)}
             >
               <IconArrowRight className="mr-2 text-muted-foreground" />
-              {message.heading}
+              {chat.title}
             </Button>
           ))}
         </div>

@@ -1,8 +1,8 @@
-import { nanoid } from '@/lib/utils'
 import { Chat } from '@/components/chat'
+import { getChats } from '../actions';
 
-export default function IndexPage() {
-  const id = nanoid()
+export default async function IndexPage() {
+  const chats = await getChats("global");
 
-  return <Chat id={id} />
+  return <Chat chats={chats} />
 }

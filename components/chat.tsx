@@ -1,70 +1,56 @@
 'use client'
 
-import { useChat, type Message } from 'ai/react'
-
-import { cn } from '@/lib/utils'
 import { ChatList } from '@/components/chat-list'
-import { ChatPanel } from '@/components/chat-panel'
 import { EmptyScreen } from '@/components/empty-screen'
 import { ChatScrollAnchor } from '@/components/chat-scroll-anchor'
-import { useLocalStorage } from '@/lib/hooks/use-local-storage'
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle
-} from '@/components/ui/dialog'
-import { useState } from 'react'
-import { Button } from './ui/button'
-import { Input } from './ui/input'
-import { toast } from 'react-hot-toast'
-import { usePathname, useRouter } from 'next/navigation'
+import { Chat, MessageStream } from '@/lib/types'
+import { useCallback, useEffect, useState } from 'react'
 
-const IS_PREVIEW = process.env.VERCEL_ENV === 'preview'
 export interface ChatProps extends React.ComponentProps<'div'> {
-  initialMessages?: Message[]
-  id?: string
+  chats: Chat[],
 }
 
-export function Chat({ id, initialMessages, className }: Readonly<ChatProps>) {
-  const path = usePathname()
-  const [previewToken, setPreviewToken] = useLocalStorage<string | null>(
-    'ai-token',
-    null
-  )
-  const [previewTokenDialog, setPreviewTokenDialog] = useState(IS_PREVIEW)
-  const [previewTokenInput, setPreviewTokenInput] = useState(previewToken ?? '')
-  const { messages, append, reload, stop, isLoading, input, setInput } =
-    useChat({
-      initialMessages,
-      id,
-      body: {
-        id,
-        previewToken
-      },
-      onResponse(response) {
-        if (response.status === 401) {
-          toast.error(response.statusText)
-        }
-      },
-      onFinish() {
-        if (!path.includes('chat')) {
-          window.history.pushState({}, '', `/chat/${id}`)
-        }
-      }
-    })
+export function Chat({ chats }: Readonly<ChatProps>) {
+  const [allMessages, setAllMessages] = useState<MessageStream[]>([]);
+  const [availableChats, setAvailableChats] = useState<Chat[]>(chats);
+  const [messages, setMessages] = useState<MessageStream[]>([]);
+  const [index, setIndex] = useState(0);
+
+  const loadNewSubject = useCallback((chatID: string) => {
+    const chat = availableChats.find(chat => chat.id === chatID);
+    console.log(availableChats, chatID, chat)
+    if (!chat) return;
+
+    setIndex(prev => prev + 1);
+    setMessages(prev => [...prev, chat.messages[0]]);
+    setAllMessages(prev => [...prev, ...chat.messages]);
+    setAvailableChats(prev => prev.filter(c => c.id !== chatID));
+  }, [availableChats]);
+
+  useEffect(() => {
+    if (chats.length === 0) return;
+    setIndex(0);
+    setMessages([]);
+    setAllMessages([]);
+    setAvailableChats(chats);
+    loadNewSubject("0");
+  }, [chats]);
+
+  function renderNextMessage() {
+    if (index >= allMessages.length) return;
+    setMessages(prev => [...prev, allMessages[index]]);
+    setIndex(prev => prev + 1);
+  }
+
   return (
-    <div className={cn('pb-[200px] pt-4 md:pt-10', className)}>
-      {messages.length ? (
-        <>
-          <ChatList messages={messages}/>
-          <ChatScrollAnchor trackVisibility={isLoading} />
-        </>
-      ) : (
-        <EmptyScreen setInput={setInput} />
-      )}
+    <div className='pb-[200px] pt-4 md:pt-10'>
+      <ChatList
+        renderAnimation messages={messages}
+        onFinishRender={renderNextMessage}
+      />
+      <ChatScrollAnchor trackVisibility={index < allMessages.length}/>
+      {availableChats.length > 0 && index === allMessages.length &&
+        <EmptyScreen onSelect={loadNewSubject} chats={availableChats}/>}
     </div>
   )
 }
