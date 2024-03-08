@@ -6,6 +6,7 @@ import { kv } from '@vercel/kv'
 
 import { auth } from '@/auth'
 import { type Chat } from '@/lib/types'
+import { Message } from 'ai'
 
 export async function getChats(userId?: string | null) {
   if (!userId) {
@@ -38,6 +39,14 @@ export async function getChat(id: string, userId: string) {
   }
 
   return chat
+}
+
+export async function getChatMessages(id: string) {
+  const chat = await kv.hgetall<Chat>(`chat:${id}`)
+
+  if (!chat) return [] as Message[]
+
+  return chat.messages;
 }
 
 export async function removeChat({ id, path }: { id: string; path: string }) {
@@ -94,9 +103,7 @@ export async function clearChats() {
 export async function getSharedChat(id: string) {
   const chat = await kv.hgetall<Chat>(`chat:${id}`)
 
-  if (!chat || !chat.sharePath) {
-    return null
-  }
+  if (!chat?.title) return null;
 
   return chat
 }

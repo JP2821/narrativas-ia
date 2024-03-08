@@ -9,24 +9,24 @@ import {
   TooltipContent,
   TooltipTrigger
 } from '@/components/ui/tooltip'
-import { IconArrowElbow, IconPlus } from '@/components/ui/icons'
-import { useRouter } from 'next/navigation'
+import { IconArrowElbow, IconRefresh } from '@/components/ui/icons'
 
 export interface PromptProps
   extends Pick<UseChatHelpers, 'input' | 'setInput'> {
   onSubmit: (value: string) => void
+  changeRole?: () => void
   isLoading: boolean
 }
 
-export function PromptForm({
+export default function PromptForm({
   onSubmit,
   input,
   setInput,
-  isLoading
-}: PromptProps) {
+  isLoading,
+  changeRole,
+}: Readonly<PromptProps>) {
   const { formRef, onKeyDown } = useEnterSubmit()
   const inputRef = React.useRef<HTMLTextAreaElement>(null)
-  const router = useRouter()
   React.useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus()
@@ -41,7 +41,7 @@ export function PromptForm({
           return
         }
         setInput('')
-        await onSubmit(input)
+        onSubmit(input)
       }}
       ref={formRef}
     >
@@ -49,21 +49,17 @@ export function PromptForm({
         <Tooltip>
           <TooltipTrigger asChild>
             <button
-              onClick={e => {
-                e.preventDefault()
-                router.refresh()
-                router.push('/')
-              }}
+              onClick={changeRole}
               className={cn(
                 buttonVariants({ size: 'sm', variant: 'outline' }),
                 'absolute left-0 top-4 size-8 rounded-full bg-background p-0 sm:left-4'
               )}
             >
-              <IconPlus />
-              <span className="sr-only">New Chat</span>
+              <IconRefresh  />
+              <span className="sr-only">Trocar</span>
             </button>
           </TooltipTrigger>
-          <TooltipContent>New Chat</TooltipContent>
+          <TooltipContent> Trocar de papel </TooltipContent>
         </Tooltip>
         <Textarea
           ref={inputRef}
@@ -85,10 +81,10 @@ export function PromptForm({
                 disabled={isLoading || input === ''}
               >
                 <IconArrowElbow />
-                <span className="sr-only">Send message</span>
+                <span className="sr-only"> Enviar mensagem </span>
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Send message</TooltipContent>
+            <TooltipContent> Enviar mensagem </TooltipContent>
           </Tooltip>
         </div>
       </div>
