@@ -1,4 +1,4 @@
-import { Chat } from '@/components/chat'
+import Chat from './components/chat'
 import { getChats } from '../actions';
 
 export default async function IndexPage() {

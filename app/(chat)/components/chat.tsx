@@ -10,7 +10,7 @@ export interface ChatProps extends React.ComponentProps<'div'> {
   chats: Chat[],
 }
 
-export function Chat({ chats }: Readonly<ChatProps>) {
+export default function ChatComponent({ chats }: Readonly<ChatProps>) {
   const [allMessages, setAllMessages] = useState<MessageStream[]>([]);
   const [availableChats, setAvailableChats] = useState<Chat[]>(chats);
   const [messages, setMessages] = useState<MessageStream[]>([]);
