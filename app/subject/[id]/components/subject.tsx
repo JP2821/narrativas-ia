@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
+import { ChatPanel } from "./chat-panel";
 import { MessageStream } from "@/lib/types";
 import { ChatList } from "@/components/chat-list";
-import { ChatPanel } from "@/components/chat-panel";
 import { ChatScrollAnchor } from "@/components/chat-scroll-anchor";
 
 import { useSubject } from "../subject-context";
@@ -55,7 +55,7 @@ export default function Subject({ id }: Readonly<SubjectProps>) {
 
   return (
     <div className='pb-[200px] pt-4 md:pt-10'>
-      <ChatList messages={messages}/>
+      <ChatList messages={messages} onFinishRender={() => {}}/>
       <ChatScrollAnchor trackVisibility={true} />
       <ChatPanel
         input={input}
