@@ -17,18 +17,29 @@ export const {
   providers: [GitHub, Google({
     clientId: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    authorization: {
+      params: {
+        prompt: "consent",
+        access_type: "offline",
+        response_type: "code"
+      }
+    }
   })],
   callbacks: {
     jwt({ token, profile }) {
       if (profile) {
-        token.id = profile.id
+        token.id = profile.id ?? profile.email;
         token.image = profile.avatar_url || profile.picture
       }
       return token
     },
     session: ({ session, token }) => {
-      if (session?.user && token?.id) {
-        session.user.id = String(token.id)
+      if (session?.user) {
+        if (token?.id) {
+          session.user.id = String(token.id);
+        } else {
+          session.user.id = String(token.email);
+        }
       }
       return session
     },
