@@ -55,7 +55,7 @@ export default function Subject({ id }: Readonly<SubjectProps>) {
 
   return (
     <div className='pb-[200px] pt-4 md:pt-10'>
-      <ChatList messages={messages} onFinishRender={() => {}}/>
+      <ChatList messages={messages}/>
       <ChatScrollAnchor trackVisibility={true} />
       <ChatPanel
         input={input}

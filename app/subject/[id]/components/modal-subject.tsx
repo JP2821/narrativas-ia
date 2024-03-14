@@ -11,7 +11,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Chat } from '@/lib/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSubject } from '../subject-context';
 
 interface ModalSubjectProps {
@@ -20,8 +20,12 @@ interface ModalSubjectProps {
 
 
 export default function ModalSubject({ chat }: Readonly<ModalSubjectProps>) {
-  const [showDialog, setShowDialog] = useState(chat === null);
+  const [showDialog, setShowDialog] = useState(true);
   const { title, setTitle } = useSubject();
+
+  useEffect(() => {
+    if (chat?.title) setTitle(chat.title);
+  }, [])
 
   function handleSave() {
     if (title) setShowDialog(false);

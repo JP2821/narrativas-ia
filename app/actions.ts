@@ -101,8 +101,6 @@ export async function clearChats() {
 export async function getSharedChat(id: string) {
   const chat = await kv.hgetall<Chat>(`chat:${id}`)
 
-  if (!chat?.title) return null;
-
   return chat
 }
 

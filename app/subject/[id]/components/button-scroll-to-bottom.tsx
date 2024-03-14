@@ -28,7 +28,7 @@ export function ButtonScrollToBottom({ className, ...props }: Readonly<ButtonPro
       {...props}
     >
       <IconArrowDown />
-      <span className="sr-only">Scroll to bottom</span>
+      <span className="sr-only">Ir para baixo</span>
     </Button>
   )
 }
