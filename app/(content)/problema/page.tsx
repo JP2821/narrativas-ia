@@ -1,87 +1,77 @@
 import React from 'react';
-import styles from './styles.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import {
-    moldure,
-    title,
-    mainTitle,
-    line,
-    firstTopic,
-    secondTopic,
-    arrow
-} from './problematic-images'
+import { moldure, title, arrow } from './problema-images'
+import { pixterDisplay } from '@/fonts';
 
-const MyComponent: React.FC = () => {
-
+export default function ProblemaIndexPage() {
   return (
-    <div className={styles.container}>
-        <div style={{ width: '100%', height: '100%', margin: 0, padding: 0 }}>
+    <div className={`${pixterDisplay.className} flex flex-col justify-center items-center`}>
+      <div className='max-h-fit max-w-fit'>
+        <div className='w-full h-full'>
           <Image
             src={moldure}
-            alt=""
+            alt="page moldure"
             objectFit="cover"
-            style={{ width: '100%', height: '100%' }}
           />
         </div>
-        <div>
-        <Image
-          src={title}
-          alt=""
-          objectFit="cover"
-          style={{ position:'relative' ,width: '80%', height: '80%', top:"-115vh", left:'-29vw' }}
-        />
-        <Image
-          src={mainTitle}
-          alt=""
-          style={{ position:'relative' ,width: '100%', height: '100%', top:"-90vh", left:'-5vw'}}
-        />
-        <Image
-          src={line}
-          alt=""
-          style={{ position:'relative' ,width: '70%', height: '70%', top:"-125vh", left:'39vw'}}
-        />
-        <Image
-          src={line}
-          alt=""
-          style={{ position:'relative' ,width: '70%', height: '70%', top:"-115vh", left:'39vw'}}
-        />
-        <Image
-          src={line}
-          alt=""
-          style={{ position:'relative' ,width: '70%', height: '70%', top:"-105vh", left:'39vw'}}
-        />
-        <Image
-          src={firstTopic}
-          alt=""
-          style={{ position:'relative' ,width: '6%', height: '6%', top:"-121vh", left:'39vw'}}
-        />
-        <Image
-          src={secondTopic}
-          alt=""
-          style={{ position:'relative' ,width: '6%', height: '6%', top:"-112vh", left:'39vw'}}
-        />
+        <div className='w-full h-full absolute top-0 z-10'>
+          <p className='text-[#83F0FF] text-[3vw] relative top-4 left-10'>
+            //: A PROBLEMÁTICA DA IA
+          </p>
+          <div className='flex relative left-10 md:left-[20%] top-28 w-full gap-[5%]'>
+            <div className='relative h-[25vw] flex'>
+              
+              <Image
+                src={title}
+                alt="page title"
+                style={{ width: '100%', height: '100%' }}
+              />
+            </div>
+            <p className='text-[#83F0FF] text-[1.2vw] mt-[10%]'>
+              //:TÓPICOS
+            </p>
+            <div className='-mt-10 w-[45%] sm:w-60 lg:w-[20%] sm:mt-[10%]'>
+              <hr className="h-px border-[1px] border-[#83F0FF]"/>
+              <Link href="/problema/page1">
+                <Button variant="ghost" className='p-0 m-0 w-full flex justify-start py-10'>
+                  <p className='text-[#83F0FF] text-[1vw]'>
+                    //:001
+                  </p>
+                  <p className='ml-[15%] mr-auto font-sans'>
+                    Você conhece alguma IA?
+                  </p>
+                  <Image
+                    src={arrow}
+                    alt="Seta"
+                    width={20}
+                    height={20}
+                  />
+                </Button>
+              </Link>
+              <hr className="h-px border-[1px] border-[#83F0FF]"/>
+              <Link href="/problema/page2">
+                <Button variant="ghost" className='p-0 m-0 w-full flex justify-start py-10'>
+                  <p className='text-[#83F0FF] text-[1vw]'>
+                    //:002
+                  </p>
+                  <p className='ml-[15%] mr-auto font-sans'>
+                    IA no dia a dia
+                  </p>
+                  <Image
+                    src={arrow}
+                    alt="Seta"
+                    width={20}
+                    height={20}
+                  />
+                </Button>
+              </Link>
+              <hr className="h-px border-[1px] border-[#83F0FF]"/>
+            </div>
+          </div>
         </div>
-        <h2 className={styles.topicText}>
-            Você conhece alguma IA?
-        </h2>
-        <h2 className={styles.topicText2}>
-            IA no dia dia
-        </h2>
-        <Button style={{ background: 'transparent', border: 'none' }}>
-            <Link href={`/problematica/page1`}>
-              <Image src={arrow} alt="Seta" width={20} height={20} style={{ position:'relative', top:"-131vh", left:'46vw'}} />
-            </Link>
-        </Button>
-        <Button style={{ background: 'transparent', border: 'none' }}>
-            <Link href={`/problematica/page2`}>
-              <Image src={arrow} alt="Seta" width={20} height={20} style={{ position:'relative', top:"-124.5vh", left:'46vw'}} />
-            </Link>
-        </Button>
-    
+      </div>
     </div>
   );
 };
-
-export default MyComponent;
