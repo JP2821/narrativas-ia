@@ -3,13 +3,7 @@ import { SidebarMobile } from './sidebar-mobile'
 import { SidebarToggle } from './sidebar-toggle'
 import React from 'react'
 
-interface LoggedSidebarProps {
-  userId: string
-}
-
-export default function LoggedSidebar({
-  userId
-}: Readonly<LoggedSidebarProps>) {
+export default function LoggedSidebar() {
   return (
     <span>
       <SidebarMobile>

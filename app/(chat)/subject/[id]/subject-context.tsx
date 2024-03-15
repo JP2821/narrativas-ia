@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from "react";
-import { MessageStream } from "../../../lib/types";
+import { MessageStream } from "@/lib/types";
 
 interface SubjectContext {
   title: string;

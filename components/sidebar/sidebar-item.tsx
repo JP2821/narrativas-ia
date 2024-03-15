@@ -14,16 +14,12 @@ import { cn } from '@/lib/utils'
 
 interface SidebarItemProps {
   page: Page
-  index: number
 }
 
-export function SidebarItem({
-  index, page
-}: Readonly<SidebarItemProps>) {
+export function SidebarItem({ page }: Readonly<SidebarItemProps>) {
   const pathname = usePathname()
 
-  const isActive = pathname === page.href
-  const shouldAnimate = index === 0 && isActive
+  const shouldAnimate = pathname === page.href
 
   return (
     <motion.div
@@ -53,7 +49,7 @@ export function SidebarItem({
         className={cn(
           buttonVariants({ variant: 'ghost' }),
           'group w-full px-8 transition-colors hover:bg-zinc-200/40 dark:hover:bg-zinc-300/10',
-          isActive && 'bg-zinc-200 pr-16 font-semibold dark:bg-zinc-800'
+          shouldAnimate && 'bg-zinc-200 pr-16 font-semibold dark:bg-zinc-800'
         )}
       >
         <div
