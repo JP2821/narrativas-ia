@@ -1,0 +1,191 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    background-color: #1E1E1E;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.purpleBlock{
+    background-color: #5E5CCA;
+    position: relative;
+    font-family: 'Open Sans';
+    width: 100%;
+    height: 100%;
+    font-weight:bolder;
+    top: -50vh;
+    
+}
+
+.textleft{
+    margin-left: 10vw;
+    color: white;
+    font-size: 40px;
+}
+
+.textleftPadding{
+    margin-left: 10vw;
+    color: white;
+    font-size: 40px;
+    padding-bottom: 9vw;
+}
+
+.tituloRoxo{
+    display: flex;
+    flex-direction: row;
+}
+
+.tituloconfig{
+    font-family: 'Open Sans';
+    font-size: 120px;
+    color: white;
+    margin-left: 10vw;
+    padding-top:5vw;
+}
+
+.buttonStyle{
+    background-color: none;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none; 
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px solid #fff;
+}
+
+.buttonsMenu{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    padding: 30px;
+    margin-left: 7.5vw;
+}
+
+.dinamicTextConfig{
+    color: white;
+    font-size: 38px;
+    font-family: 'Open Sans';
+    font-style: italic;
+    font-weight: lighter;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.selectedButton {
+    background-color: white;
+    border: none;
+    color: black;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none; 
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px solid black;
+}
+
+.subtextAling{
+    display: flex;
+    flex-direction: row;
+}
+
+.subtextStyle{
+    color: #fff;
+    font-size: 40px;
+    font-family: 'Open Sans';
+    margin-top: -24vh;
+    width: 40%;
+}
+
+.buttonConfig{
+    position: relative;
+    left: 65vw;
+    top: -24vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.subtextAling2{
+    margin-top: 15vh;
+    max-width: 1500px;
+}
+
+.subtextStyle2{
+    position: relative;
+    color: #fff;
+    font-size: 40px;
+    font-family: 'Open Sans';
+    margin-top: -22vh;
+    width: 40%;
+}
+
+.buttonConfig2{
+    position: relative;
+    left: 65vw;
+    top: -23vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.subtextAling3{
+    margin-top: 10vh;
+    max-width: 1500px;
+}
+
+.subtextStyle3{
+    position: relative;
+    color: #fff;
+    font-size: 40px;
+    font-family: 'Open Sans';
+    margin-top: -20vh;
+    width: 40%;
+}
+
+.buttonConfig3{
+    position: relative;
+    left: 65vw;
+    top: -21vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.subtituloText{
+    max-width: 1200px;
+    color: white;
+    font-size: 24px;
+    font-style: italic;
+    margin-top: -24vh;
+    padding-bottom: 26vh;
+}
+
+.subtituloText2{
+    max-width: 1200px;
+    color: white;
+    font-size: 24px;
+    font-style: italic;
+    margin-top: -20vh;
+    padding-bottom: 24vh;
+}
+
+.subtituloText3{
+    max-width: 1200px;
+    color: white;
+    font-size: 24px;
+    font-style: italic;
+    margin-top: -18vh;
+    padding-bottom: 26vh;
+}
