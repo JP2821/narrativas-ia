@@ -228,7 +228,7 @@ const HomePage: React.FC = () => {
         <div className={styles.subtextAling}>
           <div className={styles.subtextStyle3}>
             <h1>
-              Projeto de Lei 20/2020
+              Projeto de Lei 2830/2021
             </h1>
           </div>
         </div>

@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    background-color: #1E1E1E;
+}
+
+.topicText{
+    font-size: 18px;
+    font-family: 'Open Sans';
+    position: relative;
+    top: -125vh;
+    left: 32vw;
+    color: white;
+}
+
+.topicText2{
+    font-size: 18px;
+    font-family: 'Open Sans';
+    position: relative;
+    top: -118vh;
+    left: 30vw;
+    color: white;
+}
