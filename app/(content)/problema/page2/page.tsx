@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.module.css'
 import Image from 'next/image';
-import { blockPage } from './page1-images';
+import { blockMoldure2Img } from '../problema-images';
 
 
 const MyComponent: React.FC = () => {
@@ -16,9 +16,9 @@ const MyComponent: React.FC = () => {
     <div className={styles.container}>
         <div style={{ width: '100%', height: '100%'}}>
             <Image
-              src={blockPage}
-              alt=""
               objectFit="cover"
+              src={blockMoldure2Img}
+              alt="block moldure image"
               style={{ position: 'relative',width: '80%', height: '80%', marginTop:'11vh', marginBottom:'11.2vh', left:'4vw' }}
             />
             <div style={{ maxWidth:'800px'}}>
