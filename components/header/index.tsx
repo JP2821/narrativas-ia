@@ -10,7 +10,7 @@ export function Header() {
           <Profile />
         </React.Suspense>
       </div>
-      <div className="flex items-center justify-end space-x-2">
+      <div className="flex items-center justify-end space-x-2" id="share">
         <ShareSiteButton/>
       </div>
     </header>

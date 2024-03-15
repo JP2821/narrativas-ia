@@ -1,19 +1,22 @@
 'use client'
 
+import { SubjectList } from './subject-list'
 import { ChatList } from '@/components/chat-list'
-import { EmptyScreen } from '@/components/empty-screen'
 import { ChatScrollAnchor } from '@/components/chat-scroll-anchor'
 import { Chat, MessageStream } from '@/lib/types'
 import { useCallback, useEffect, useState } from 'react'
 import { Controls } from './controls'
 import { useChat } from '../chat-context'
 import { useKeyPress } from '../../../lib/hooks/use-key-down'
+import { chatTutorial } from '../tutorial'
+import { useLocalStorage } from '../../../lib/hooks/use-local-storage'
 
 export interface ChatProps extends React.ComponentProps<'div'> {
   chats: Chat[],
 }
 
 export default function ChatComponent({ chats }: Readonly<ChatProps>) {
+  const [_, setTutorial] = useLocalStorage("chat-tutorial", true);
   const { canNextMsg, setCanNextMsg, speed, setSpeed } = useChat();
 
   const [allMessages, setAllMessages] = useState<MessageStream[]>([]);
@@ -40,6 +43,13 @@ export default function ChatComponent({ chats }: Readonly<ChatProps>) {
     loadNewSubject("0");
   }, [chats]);
 
+  useEffect(() => {
+    const tutorial = window.localStorage.getItem("chat-tutorial");
+    if (!tutorial) {
+      chatTutorial.drive();
+      setTutorial(true);
+    }
+  }, [])
 
   function nextMessage() {
     if (index >= allMessages.length || !canNextMsg) return;
@@ -63,7 +73,7 @@ export default function ChatComponent({ chats }: Readonly<ChatProps>) {
   }, ["ArrowRight", "Enter", " ", "ArrowDown"]);
 
   return (
-    <div className='pb-[200px] pt-4 md:pt-10'>
+    <div className='pb-[200px] pt-4 md:pt-10' id="chat-content">
       <ChatList messages={messages}/>
       <Controls
         speed={speed}
@@ -76,7 +86,7 @@ export default function ChatComponent({ chats }: Readonly<ChatProps>) {
       />
       <ChatScrollAnchor trackVisibility={!canNextMsg}/>
       {availableChats.length > 0 && index === allMessages.length && canNextMsg &&
-        <EmptyScreen onSelect={loadNewSubject} chats={availableChats}/>}
+        <SubjectList onSelect={loadNewSubject} chats={availableChats}/>}
     </div>
   )
 }

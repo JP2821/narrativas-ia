@@ -15,7 +15,7 @@ export async function SidebarList() {
   return (
     <div className="flex flex-1 flex-col overflow-hidden">
       <div className="flex-1 overflow-auto">
-        <div className="space-y-2 px-2">
+        <div className="space-y-2 px-2" id="page-list">
           <p className='p-2 text-sm text-slate-300'>2024</p>
           <SidebarItems pages={pages} />
         </div>
