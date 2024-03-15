@@ -41,7 +41,7 @@ export default function ChatComponent({ chats }: Readonly<ChatProps>) {
     setAllMessages([]);
     setAvailableChats(chats);
     loadNewSubject("0");
-  }, [chats]);
+  }, [chats, loadNewSubject]);
 
   useEffect(() => {
     const tutorial = window.localStorage.getItem("chat-tutorial");
@@ -49,7 +49,7 @@ export default function ChatComponent({ chats }: Readonly<ChatProps>) {
       chatTutorial.drive();
       setTutorial(true);
     }
-  }, [])
+  }, [setTutorial])
 
   function nextMessage() {
     if (index >= allMessages.length || !canNextMsg) return;

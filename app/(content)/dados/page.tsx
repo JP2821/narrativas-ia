@@ -43,7 +43,7 @@ export default function DataPage() {
         </p>
       </div>
 
-      <div className="bg-[#5E5CCA] w-full h-full justify-center items-center py-32 flex flex-col">
+      <div className="bg-[#5E5CCA] size-full justify-center items-center py-32 flex flex-col">
         <div className="text-3xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-[180px] font-bold">
           <h1>
             Dessa forma,

@@ -11,7 +11,7 @@ export function SubjectList({ chats, onSelect }: Readonly<SubjectListProps>) {
     <div className="mx-auto max-w-2xl px-4 flex flex-wrap gap-1">
       {chats.map((chat) => (
         <Button
-          className="rounded-lg border bg-background p-10 flex-grow w-1/3"
+          className="rounded-lg border bg-background p-10 grow w-1/3"
           key={chat.id}
           variant="link"
           onClick={() => onSelect(chat.id)}

@@ -26,7 +26,7 @@ export default function ProblemaKnownPage() {
                 A Inteligência Artificial é como ensinamos computadores a pensar e aprender como seres humanos. É uma tecnologia que ajuda as máquinas a entenderem coisas. Mas, assim como tem pontos positivos, também pode ter desafios, como quando queremos manter nossas informações privadas, evitar decisões injustas ou entender como os computadores tomam decisões.
             </p>
         </div>
-        <div className='w-full h-full'>
+        <div className='size-full'>
             <Image
               objectFit="cover"
               src={blockMoldure1Img}
