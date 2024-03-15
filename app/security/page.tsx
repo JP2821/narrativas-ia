@@ -2,15 +2,15 @@
 import React, { useState} from 'react';
 import styles from './styles.module.css'
 import Image from 'next/image';
-import BitsImagem from '../img/Group 18.png';
-import Cadeado from '../img/cadeado 1.svg';
-import Texto from '../img/O que protege os meus dados_.png';
-import LGPDImg from '../img/Frame 6.png';
-import Seta from '../img/seta (1).png';
-import IMG_1 from '../img/Group 19.png';
-import IMG_2 from '../img/Group 20.png';
+import BitsImagem from '../img/Group18.png';
+import Cadeado from '../img/cadeado.svg';
+import Texto from '../img/OqueProtegeOsMeusDados.png';
+import LGPDImg from '../img/Frame6.png';
+import Seta from '../img/seta.png';
+import IMG_1 from '../img/Group19.png';
+import IMG_2 from '../img/Group20.png';
 import Legislar from '../img/LEGISLAÇÃO.png';
-import Line from '../img/Line 2.png';
+import Line from '../img/Line.png';
 import Chevron from '../img/chevron-down.png';
 
 const HomePage: React.FC = () => {
