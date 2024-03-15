@@ -41,7 +41,7 @@ export default function ChatComponent({ chats }: Readonly<ChatProps>) {
     setAllMessages([]);
     setAvailableChats(chats);
     loadNewSubject("0");
-  }, [chats, loadNewSubject]);
+  }, [chats]);
 
   useEffect(() => {
     const tutorial = window.localStorage.getItem("chat-tutorial");
