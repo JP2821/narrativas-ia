@@ -5,11 +5,9 @@ import {
   IconSeparator,
 } from '@/components/ui/icons'
 import { UserMenu } from '@/components/header/user-menu'
-import { SidebarMobile } from './sidebar-mobile'
-import { SidebarToggle } from './sidebar-toggle'
-import { ChatHistory } from '../chat-history'
+import { LoggedSidebar } from '@/components/sidebar';
 import { LoginButton } from '../login-button'
-import { auth } from '../../auth';
+import { auth } from '@/auth';
 
 export default async function Profile() {
   const session = await auth();
@@ -17,12 +15,7 @@ export default async function Profile() {
   return (
     <>
       {session?.user ? (
-        <>
-          <SidebarMobile>
-            <ChatHistory userId={session.user.id} />
-          </SidebarMobile>
-          <SidebarToggle />
-        </>
+        <LoggedSidebar userId={session.user.id}/>
       ) : (
         <Link href="/" target="_blank" rel="nofollow">
           <IconNextChat className="size-6 mr-2 dark:hidden" inverted />

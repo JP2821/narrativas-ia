@@ -1,5 +1,7 @@
 'use client'
 
+// THIS FILE IS TO EXAMPLE THE AlertDialog
+
 import * as React from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-hot-toast'
@@ -27,7 +29,7 @@ interface ClearHistoryProps {
 export function ClearHistory({
   isEnabled = false,
   clearChats
-}: ClearHistoryProps) {
+}: Readonly<ClearHistoryProps>) {
   const [open, setOpen] = React.useState(false)
   const [isPending, startTransition] = React.useTransition()
   const router = useRouter()

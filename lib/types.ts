@@ -17,6 +17,12 @@ export interface MessageStream {
   isFinished?: boolean
 }
 
+export interface Page {
+  id: string
+  name: string
+  href: string
+}
+
 export type ServerActionResult<Result> = Promise<
   | Result
   | {
