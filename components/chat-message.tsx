@@ -1,6 +1,3 @@
-// Inspired by Chatbot-UI and modified to fit the needs of this project
-// @see https://github.com/mckaywrigley/chatbot-ui/blob/main/components/Chat/ChatMessage.tsx
-
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 
@@ -10,32 +7,33 @@ import { IconOpenAI, IconUser } from '@/components/ui/icons'
 import { ChatMessageActions } from '@/components/chat-message-actions'
 import { MessageStream } from '../lib/types'
 import { useEffect, useState } from 'react'
+import { useChat } from '../app/(chat)/chat-context'
 
 export interface ChatMessageProps {
   message: MessageStream
   renderAnimation?: boolean
-  onFinishAnimation: () => void
 }
 
-export function ChatMessage({ message, ...props }: Readonly<ChatMessageProps>) {
+export function ChatMessage({
+  message, renderAnimation, ...props
+}: Readonly<ChatMessageProps>) {
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const { speed, setCanNextMsg } = useChat();
   const content = message.content;
 
   useEffect(() => {
-    if (!props.renderAnimation) {
-      return setCurrentText(content);
-    };
+    if (speed === 0 || !renderAnimation) return setCurrentText(content);
 
     if (currentIndex < content.length) {
       const timeout = setTimeout(() => {
         setCurrentText(prevText => prevText + content[currentIndex]);
         setCurrentIndex(prevIndex => prevIndex + 1);
-      }, 20);
+      }, 20 / speed);
 
       return () => clearTimeout(timeout);
     } else {
-      props.onFinishAnimation()
+      setCanNextMsg(true);
     }
   }, [currentIndex, content]);
 

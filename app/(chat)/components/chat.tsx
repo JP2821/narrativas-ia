@@ -5,12 +5,17 @@ import { EmptyScreen } from '@/components/empty-screen'
 import { ChatScrollAnchor } from '@/components/chat-scroll-anchor'
 import { Chat, MessageStream } from '@/lib/types'
 import { useCallback, useEffect, useState } from 'react'
+import { Controls } from './controls'
+import { useChat } from '../chat-context'
+import { useKeyPress } from '../../../lib/hooks/use-key-down'
 
 export interface ChatProps extends React.ComponentProps<'div'> {
   chats: Chat[],
 }
 
 export default function ChatComponent({ chats }: Readonly<ChatProps>) {
+  const { canNextMsg, setCanNextMsg, speed, setSpeed } = useChat();
+
   const [allMessages, setAllMessages] = useState<MessageStream[]>([]);
   const [availableChats, setAvailableChats] = useState<Chat[]>(chats);
   const [messages, setMessages] = useState<MessageStream[]>([]);
@@ -18,7 +23,6 @@ export default function ChatComponent({ chats }: Readonly<ChatProps>) {
 
   const loadNewSubject = useCallback((chatID: string) => {
     const chat = availableChats.find(chat => chat.id === chatID);
-    console.log(availableChats, chatID, chat)
     if (!chat) return;
 
     setIndex(prev => prev + 1);
@@ -36,20 +40,42 @@ export default function ChatComponent({ chats }: Readonly<ChatProps>) {
     loadNewSubject("0");
   }, [chats]);
 
-  function renderNextMessage() {
-    if (index >= allMessages.length) return;
+
+  function nextMessage() {
+    if (index >= allMessages.length || !canNextMsg) return;
     setMessages(prev => [...prev, allMessages[index]]);
     setIndex(prev => prev + 1);
+    if (speed > 1) setSpeed(1);
+    setCanNextMsg(false);
   }
+
+  function skipToEnd() {
+    setMessages(prev => [...prev, ...allMessages.slice(index)]);
+    setIndex(allMessages.length);
+  }
+
+  function changeSpeed() {
+    setSpeed(prev => prev === 1 ? 8 : 1);
+  }
+
+  useKeyPress(() => {
+    if (canNextMsg) nextMessage();
+  }, ["ArrowRight", "Enter", " ", "ArrowDown"]);
 
   return (
     <div className='pb-[200px] pt-4 md:pt-10'>
-      <ChatList
-        renderAnimation messages={messages}
-        onFinishRender={renderNextMessage}
+      <ChatList messages={messages}/>
+      <Controls
+        speed={speed}
+        onSkip={skipToEnd}
+        onNext={nextMessage}
+        onChangeSpeed={changeSpeed}
+        canSpeed={!canNextMsg}
+        canSkip={index < allMessages.length}
+        canNext={canNextMsg && index < allMessages.length}
       />
-      <ChatScrollAnchor trackVisibility={index < allMessages.length}/>
-      {availableChats.length > 0 && index === allMessages.length &&
+      <ChatScrollAnchor trackVisibility={!canNextMsg}/>
+      {availableChats.length > 0 && index === allMessages.length && canNextMsg &&
         <EmptyScreen onSelect={loadNewSubject} chats={availableChats}/>}
     </div>
   )

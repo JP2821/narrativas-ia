@@ -4,13 +4,9 @@ import { MessageStream } from '../lib/types'
 
 export interface ChatList {
   messages: MessageStream[]
-  renderAnimation?: boolean
-  onFinishRender: () => void
 }
 
-export function ChatList({
-  messages, renderAnimation, onFinishRender
-}: Readonly<ChatList>) {
+export function ChatList({ messages }: Readonly<ChatList>) {
   if (!messages.length) {
     return null
   }
@@ -18,14 +14,10 @@ export function ChatList({
   return (
     <div className="relative mx-auto max-w-2xl px-4">
       {messages.map((message, index) => (
-        <div key={message.id}>
+        <div key={message.id + index}>
           <ChatMessage
             message={message}
-            onFinishAnimation={onFinishRender}
-            renderAnimation={
-              renderAnimation &&
-              index === messages.length - 1
-            }
+            renderAnimation={index === messages.length - 1}
           />
           {index < messages.length - 1 && (
             <Separator className="my-4 md:my-8" />

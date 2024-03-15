@@ -121,6 +121,25 @@ function IconGoogle({ className, ...props }: React.ComponentProps<'svg'>) {
   )
 }
 
+function IconFastForward({
+  className, ...props
+}: Readonly<React.ComponentProps<'svg'>>) {
+  return (
+    <svg
+      role="img"
+      aria-label="Fast Foward icon"
+      viewBox="0 0 256.409 256.409"
+      className={cn('size-4', className)}
+      {...props}
+    >
+      <path
+        d="M254.189,121.75L132.267,26.191c-1.898-1.632-4.574-2.012-6.853-0.974c-2.274,1.044-3.737,3.318-3.737,5.825v82.206L10.59,26.191c-1.898-1.632-4.574-2.012-6.853-0.974C1.458,26.262,0,28.536,0,31.043V225.37c0,2.518,1.479,4.808,3.78,5.842c2.306,1.028,4.993,0.615,6.886-1.061l111.006-89.924v85.143c0,2.518,1.479,4.808,3.786,5.842c2.301,1.028,4.993,0.615,6.88-1.061l121.917-98.763c1.382-1.224,2.176-3.057,2.154-4.835C256.397,124.709,255.587,122.952,254.189,121.75z M12.82,211.098V45.011l105.79,81.673L12.82,211.098z M134.492,211.098V127.76c0.082-0.408,0.261-0.8,0.25-1.207c0-0.392-0.174-0.745-0.25-1.12V45.011l105.79,81.673L134.492,211.098z"
+        fill="currentColor"
+      ></path>
+    </svg>
+  )
+}
+
 function IconGitHub({ className, ...props }: React.ComponentProps<'svg'>) {
   return (
     <svg
@@ -485,6 +504,7 @@ export {
   IconSeparator,
   IconArrowDown,
   IconArrowRight,
+  IconFastForward,
   IconUser,
   IconPlus,
   IconArrowElbow,
