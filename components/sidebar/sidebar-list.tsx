@@ -4,12 +4,11 @@ import { ThemeToggle } from './theme-toggle'
 
 export async function SidebarList() {
   const pages: Page[] = [
-    { id: '1', name: 'Conversa', href: '/' },
-    { id: '2', name: 'O que é IA?', href: '/ia' },
-    { id: '3', name: 'Privacidade no mundo de IA', href: '/privacidade' },
-    { id: '4', name: 'Mas e os meus dados?', href: '/dados' },
-    { id: '5', name: 'Problemática da IA', href: '/problema' },
-    { id: '6', name: 'Opiniões de especialistas', href: '/opinioes' },
+    { id: '1', name: 'O que é IA?', href: '/' },
+    { id: '2', name: 'Privacidade no mundo de IA', href: '/privacidade' },
+    // { id: '3', name: 'Opiniões de especialistas', href: '/opinioes' },
+    // { id: '4', name: 'Mas e os meus dados?', href: '/dados' },
+    // { id: '5', name: 'Problemática da IA', href: '/problema' },
   ]
 
   return (
