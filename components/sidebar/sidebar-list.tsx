@@ -7,8 +7,8 @@ export async function SidebarList() {
     { id: '1', name: 'O que é IA?', href: '/' },
     { id: '2', name: 'Privacidade no mundo de IA', href: '/privacidade' },
     { id: '3', name: 'Mas e os meus dados?', href: '/dados' },
+    { id: '4', name: 'Problemática da IA', href: '/problema' },
     // { id: '3', name: 'Opiniões de especialistas', href: '/opinioes' },
-    // { id: '5', name: 'Problemática da IA', href: '/problema' },
   ]
 
   return (
